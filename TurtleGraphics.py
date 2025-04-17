@@ -3,25 +3,75 @@
 #Date:
 #Assignment:
 
-import turtle #needed generally but not in CodeHS
-hideturtle() #hides the default turtle in CodeHS
-
-def drawSquare(myTurtle, size):
+import turtle
+screen = turtle.Screen
+kev = turtle.Turtle()
+def drawSquare(kev, size):
     for i in range(4):
-        myTurtle.forward(size)
-        myTurtle.right(90)
+        kev.forward(size)
+        kev.right(90)
+        
+#drawSquare(kev, 50)
 
+def drawPoly(kev, size, sides): 
+    for  s in range(sides):
+        kev.forward(size)
+        kev.right(360/sides)
+        
+#drawPoly(kev, 50, 5)
+#drawPoly(kev, 50, 8)
 
-def main():
-    myTurtle = turtle.Turtle()
-    # drawPolygon(myTurtle, 5) #draws a pentagon
-    # drawPolygon(myTurtle, 8) #draws an octogon
+def fillCorner(kev, corner):
+    drawSquare(kev, 100)
+    if corner == 1:
+        kev.begin_fill()
+        drawSquare(kev, 50)
+        kev.end_fill()
+    elif corner == 2:
+        kev.forward(50)
+        kev.begin_fill()
+        drawSquare(kev, 50)
+        kev.end_fill()
+    elif corner == 3:
+        kev.right(90)
+        kev.forward(50)
+        kev.left(90)
+        kev.begin_fill()
+        drawSquare(kev, 50)
+        kev.end_fill()
+    elif corner == 4:
+        kev.right(90)
+        kev.forward(50)
+        kev.left(90)
+        kev.forward(50)
+        kev.begin_fill()
+        drawSquare(kev, 50)
+        kev.end_fill()
+    
+#fillCorner(kev, 2)
+#fillCorner(kev, 3)
 
-    # fillCorner(myTurtle, 2) #draws a square with top right corner filled in.
-    # fillCorner(myTurtle, 3) #draws a square bottom left corner filled in.
+def squaresInsquares(kev, num, size):
+    kev.up()
+    kev.left(180)
+    kev.forward(size * num)
+    kev.down()
+    kev.right(90)
+    kev.forward(size * num)
+    kev.right(90)
+    while num > 0:
+       drawSquare(kev, (size * num) * 2)
+       kev.up()
+       kev.right(90)
+       kev.forward(size)
+       kev.left(90)
+       kev.forward(size)
+       kev.down()
+       num = num - 1
 
-    # squaresInSquares(myTurtle, 5) #draws 5 concentric squares
-    # squaresInSquares(myTurtle, 3) #draws 3 concentric squares
+#squaresInsquares(kev, 5, 25)
+#squaresInsquares(kev, 3, 25)
+squaresInsquares(kev, 10, 25)
 
 
 main()
